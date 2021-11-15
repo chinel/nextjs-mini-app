@@ -6,6 +6,8 @@ function EventItem(props) {
     month: "long",
     year: "numeric",
   });
+
+  const formattedAddress = location.replace(", ", "\n");
   return (
     <li>
       <img src="" alt="" />
@@ -13,7 +15,7 @@ function EventItem(props) {
         <div>
           <h2>{title}</h2>
           <div>
-            <time>DATE</time>
+            <time>{humanReadableDate}</time>
           </div>
           <div>
             <address>ADDRESS</address>
