@@ -8,9 +8,11 @@ function EventItem(props) {
   });
 
   const formattedAddress = location.replace(", ", "\n");
+
+  const exploreLink = `/events/${id}`;
   return (
     <li>
-      <img src="" alt="" />
+      <img src={`/` + image} alt={title} />
       <div>
         <div>
           <h2>{title}</h2>
@@ -18,11 +20,11 @@ function EventItem(props) {
             <time>{humanReadableDate}</time>
           </div>
           <div>
-            <address>ADDRESS</address>
+            <address>{formattedAddress}</address>
           </div>
         </div>
         <div>
-          <Link href="">Explore Event</Link>
+          <Link href={exploreLink}>Explore Event</Link>
         </div>
       </div>
     </li>
