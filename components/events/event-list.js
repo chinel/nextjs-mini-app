@@ -1,4 +1,5 @@
 import EventItem from "./event-item";
+import classes from "../events/event-item.module.css";
 
 function EventList(props) {
   const { items } = props;
