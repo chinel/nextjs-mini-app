@@ -1,6 +1,7 @@
 import Link from "next/Link";
 import Button from "../ui/button";
 import classes from "./event-item.module.css";
+import DateIcon from "../icons/date-icon";
 function EventItem(props) {
   const { title, image, date, location, id } = props;
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -19,6 +20,7 @@ function EventItem(props) {
         <div className={classes.summary}>
           <h2>{title}</h2>
           <div className={classes.date}>
+            <DateIcon />
             <time>{humanReadableDate}</time>
           </div>
           <div className={classes.address}>
