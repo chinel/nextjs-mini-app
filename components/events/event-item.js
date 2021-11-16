@@ -2,6 +2,7 @@ import Button from "../ui/button";
 import classes from "./event-item.module.css";
 import DateIcon from "../icons/date-icon";
 import AddressIcon from "../icons/address-icon";
+import ArrowRightIcon from "../icons/arrow-right-icon";
 function EventItem(props) {
   const { title, image, date, location, id } = props;
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
@@ -29,7 +30,12 @@ function EventItem(props) {
           </div>
         </div>
         <div className={classes.actions}>
-          <Button href={exploreLink}>Explore Event</Button>
+          <Button href={exploreLink}>
+            <span>Explore Event</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
