@@ -1,4 +1,5 @@
 import Button from "../ui/button";
+import className from "./event-item.module.css";
 
 function EventsSearch(props) {
   return (
