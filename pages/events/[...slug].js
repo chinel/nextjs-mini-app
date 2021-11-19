@@ -27,7 +27,14 @@ function FilteredEventsPage() {
     numMonth < 1 ||
     numMonth > 12
   ) {
-    return <p className="center">Invalid filter. Please adjust your values</p>;
+    return (
+      <Fragment>
+        <p className="center">Invalid filter. Please adjust your values</p>
+        <div className="center">
+          <Button link="/link">Show All Events</Button>
+        </div>
+      </Fragment>
+    );
   }
 
   const filteredEvents = getFilteredEvents({
