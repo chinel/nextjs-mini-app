@@ -24,7 +24,7 @@ function FilteredEventsPage() {
     numMonth < 1 ||
     numMonth > 12
   ) {
-    return <p>Invalid filter. Please adjust your values</p>;
+    return <p className="center">Invalid filter. Please adjust your values</p>;
   }
 
   const filteredEvents = getFilteredEvents({
@@ -33,7 +33,7 @@ function FilteredEventsPage() {
   });
 
   if (!filteredEvents || filteredEvents.length === 0) {
-    return <p>No events found for the chosen filter!</p>;
+    return <p className="center">No events found for the chosen filter!</p>;
   }
 
   return (
