@@ -38,9 +38,11 @@ function FilteredEventsPage() {
     return <p className="center">No events found for the chosen filter!</p>;
   }
 
+  const date = new Date(numYear, numMonth - 1); //the reason for -1 is that date constructor function expects the month to begin at zero
+
   return (
     <Fragment>
-      <ResultsTitle />
+      <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
   );
