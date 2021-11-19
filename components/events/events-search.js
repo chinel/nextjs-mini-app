@@ -2,8 +2,10 @@ import Button from "../ui/button";
 import classes from "./events-search.module.css";
 
 function EventsSearch(props) {
+  function submitHandler(event) {}
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={submitHandler}>
       <div className={classes.controls}>
         <div className={classes.control}>
           <label htmlFor="year">Year</label>
