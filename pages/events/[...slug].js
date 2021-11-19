@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { Fragment } from "react";
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
+import Button from "../../components/ui/button";
 import { getFilteredEvents } from "../../dummy-data";
 
 function FilteredEventsPage() {
@@ -35,7 +36,14 @@ function FilteredEventsPage() {
   });
 
   if (!filteredEvents || filteredEvents.length === 0) {
-    return <p className="center">No events found for the chosen filter!</p>;
+    return (
+      <Fragment>
+        <p className="center">No events found for the chosen filter!</p>
+        <div className="center">
+          <Button link="/link">Show All Events</Button>
+        </div>
+      </Fragment>
+    );
   }
 
   const date = new Date(numYear, numMonth - 1); //the reason for -1 is that date constructor function expects the month to begin at zero
