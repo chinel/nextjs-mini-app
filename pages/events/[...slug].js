@@ -48,7 +48,9 @@ function FilteredEventsPage() {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
-        <p className="center">No events found for the chosen filter!</p>
+        <ErrorAlert>
+          <p>No events found for the chosen filter!</p>
+        </ErrorAlert>
         <div className="center">
           <Button link="/link">Show All Events</Button>
         </div>
