@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
+import ErrorAlert from "../../components/ui/error-alert";
 import { getFilteredEvents } from "../../dummy-data";
 
 function FilteredEventsPage() {
@@ -29,7 +30,9 @@ function FilteredEventsPage() {
   ) {
     return (
       <Fragment>
-        <p className="center">Invalid filter. Please adjust your values</p>
+        <ErrorAlert>
+          <p>Invalid filter. Please adjust your values</p>
+        </ErrorAlert>
         <div className="center">
           <Button link="/link">Show All Events</Button>
         </div>
