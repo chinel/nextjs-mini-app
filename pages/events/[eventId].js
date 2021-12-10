@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { Fragment } from "react";
 import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
@@ -7,8 +6,6 @@ import ErrorAlert from "../../components/ui/error-alert";
 import { getEventById } from "../../helpers/api-util";
 
 function EventDetailPage(props) {
-  const router = useRouter();
-  const eventId = router.query.eventId;
   const event = props.selectedEvent;
   if (!event) {
     return (
