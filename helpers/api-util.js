@@ -17,5 +17,6 @@ export async function getAllEvents() {
 }
 
 export async function getFeaturedEvents() {
-  return DUMMY_EVENTS.filter((event) => event.isFeatured);
+  const allEvents = await getAllEvents();
+  return allEvents.filter((event) => event.isFeatured);
 }
