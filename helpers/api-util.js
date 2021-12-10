@@ -1,5 +1,5 @@
 export async function getAllEvents() {
-  const response = fetch(
+  const response = await fetch(
     "https://nextjs-course-58c16-default-rtdb.firebaseio.com/events.json"
   );
 
@@ -7,7 +7,7 @@ export async function getAllEvents() {
 
   const events = [];
 
-  for (const key of data) {
+  for (const key in data) {
     events.push({
       id: key,
       ...data[key],
