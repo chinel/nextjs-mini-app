@@ -4,12 +4,12 @@ import EventContent from "../../components/event-detail/event-content";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventSummary from "../../components/event-detail/event-summary";
 import ErrorAlert from "../../components/ui/error-alert";
-import { getEventById } from "../../dummy-data";
+import { getEventById } from "../../helpers/api-util";
 
-function EventDetailPage() {
+function EventDetailPage(props) {
   const router = useRouter();
   const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+  const event = props.selectedEvent;
   if (!event) {
     return (
       <ErrorAlert>
@@ -31,6 +31,16 @@ function EventDetailPage() {
       </EventContent>
     </Fragment>
   );
+}
+
+export async function getStaticProps(context) {
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+  return {
+    props: {
+      selectedEvent: event,
+    },
+  };
 }
 
 export default EventDetailPage;
