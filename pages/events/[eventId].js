@@ -57,8 +57,8 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: "blocking",
-    //fallback: true,
+    //fallback: "blocking",
+    fallback: true,
     //fallback: false, // here because we have all possible eventId, we will set its value as false.  So that it can through a 404 error page if we try to retrieve an id that doesn't exist'
   };
 }
