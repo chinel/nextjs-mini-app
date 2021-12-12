@@ -4,21 +4,21 @@ import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
 import Button from "../../components/ui/button";
 import ErrorAlert from "../../components/ui/error-alert";
-import { getFilteredEvents } from "../../dummy-data";
+import { getFilteredEvents } from "../../helpers/api-util";
 
 function FilteredEventsPage(props) {
   const router = useRouter();
-  const filterData = router.query.slug;
+  // const filterData = router.query.slug;
 
-  if (!filterData) {
-    return <p className="center">Loading...</p>;
-  }
+  // if (!filterData) {
+  //   return <p className="center">Loading...</p>;
+  // }
 
-  const filteredYear = filterData[0];
-  const filteredMonth = filterData[1];
+  // const filteredYear = filterData[0];
+  // const filteredMonth = filterData[1];
 
-  const numYear = +filteredYear;
-  const numMonth = +filteredMonth;
+  // const numYear = +filteredYear;
+  // const numMonth = +filteredMonth;
 
   if (props.hasError) {
     return (
@@ -33,10 +33,7 @@ function FilteredEventsPage(props) {
     );
   }
 
-  const filteredEvents = getFilteredEvents({
-    year: numYear,
-    month: numMonth,
-  });
+  const filteredEvents = props.events;
 
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
@@ -51,7 +48,7 @@ function FilteredEventsPage(props) {
     );
   }
 
-  const date = new Date(numYear, numMonth - 1); //the reason for -1 is that date constructor function expects the month to begin at zero
+  const date = new Date(props.date.year, props.date.month - 1); //the reason for -1 is that date constructor function expects the month to begin at zero
 
   return (
     <Fragment>
@@ -91,13 +88,19 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const filteredEvents = getFilteredEvents({
+  const filteredEvents = await getFilteredEvents({
     year: numYear,
     month: numMonth,
   });
 
   return {
-    props: {},
+    props: {
+      events: filteredEvents,
+      date: {
+        year: numYear,
+        month: numMonth,
+      },
+    },
   };
 }
 
