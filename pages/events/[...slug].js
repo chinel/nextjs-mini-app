@@ -8,17 +8,6 @@ import { getFilteredEvents } from "../../helpers/api-util";
 
 function FilteredEventsPage(props) {
   const router = useRouter();
-  // const filterData = router.query.slug;
-
-  // if (!filterData) {
-  //   return <p className="center">Loading...</p>;
-  // }
-
-  // const filteredYear = filterData[0];
-  // const filteredMonth = filterData[1];
-
-  // const numYear = +filteredYear;
-  // const numMonth = +filteredMonth;
 
   if (props.hasError) {
     return (
