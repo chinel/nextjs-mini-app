@@ -9,9 +9,17 @@ import Head from "next/head";
 function FilteredEventsPage(props) {
   const router = useRouter();
 
+  let pageHead = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content="A list of filtered events." />
+    </Head>
+  );
+
   if (props.hasError) {
     return (
       <Fragment>
+        {pageHead}
         <ErrorAlert>
           <p>Invalid filter. Please adjust your values</p>
         </ErrorAlert>
@@ -27,6 +35,7 @@ function FilteredEventsPage(props) {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
+        {pageHead}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -38,16 +47,18 @@ function FilteredEventsPage(props) {
   }
 
   const date = new Date(props.date.year, props.date.month - 1); //the reason for -1 is that date constructor function expects the month to begin at zero
-
+  pageHead = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`All events for ${props.date.month}/${props.date.year}`}
+      />
+    </Head>
+  );
   return (
     <Fragment>
-      <Head>
-        <title>Filtered Events</title>
-        <meta
-          name="description"
-          content={`All events for ${numMonth}/${numYear}`}
-        />
-      </Head>
+      {pageHead}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </Fragment>
