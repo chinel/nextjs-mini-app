@@ -13,6 +13,14 @@ function handler(req, res) {
       res.status(422).json({ message: "Invalid Input" });
       return;
     }
+    const newComment = {
+      id: new Date().toISOString(),
+      email,
+      name,
+      text,
+    };
+    console.log(newComment);
+    res.status(201).json({ message: "Added comment", comment: newComment });
   }
 
   if (req.method === "GET") {
