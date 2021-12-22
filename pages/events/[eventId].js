@@ -9,6 +9,7 @@ import {
   getFeaturedEvents,
 } from "../../helpers/api-util";
 import Head from "next/head";
+import Comments from "../../components/input/comments";
 function EventDetailPage(props) {
   const event = props.selectedEvent;
   if (!event) {
@@ -34,6 +35,7 @@ function EventDetailPage(props) {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </Fragment>
   );
 }
