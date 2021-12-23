@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CommentList from "./comment-list";
 import NewComment from "./new-comment";
@@ -15,6 +15,7 @@ function Comments(props) {
       fetch(`/api/comments/${eventId}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setComments(data.comments);
         });
     }
