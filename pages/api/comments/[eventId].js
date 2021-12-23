@@ -28,15 +28,15 @@ function handler(req, res) {
       {
         id: "c1",
         name: "Max",
-        comment: "First Comment",
+        text: "First Comment",
       },
       {
         id: "c2",
         name: "Manuel",
-        comment: "Second Comment",
+        text: "Second Comment",
       },
     ];
-    res.status(200).json({ comment: dummyList });
+    res.status(200).json({ comments: dummyList });
   }
 }
 
