@@ -29,24 +29,19 @@ async function handler(req, res) {
     const db = client.db();
     const result = await db.collection("comments").insertOne(newComment);
     console.log(result);
+    newComment.id = result.insertedId;
     console.log(newComment);
     res.status(201).json({ message: "Added comment", comment: newComment });
   }
 
   if (req.method === "GET") {
-    const dummyList = [
-      {
-        id: "c1",
-        name: "Max",
-        text: "First Comment",
-      },
-      {
-        id: "c2",
-        name: "Manuel",
-        text: "Second Comment",
-      },
-    ];
-    res.status(200).json({ comments: dummyList });
+    const db = client.db();
+    const documents = await db
+      .collection("comments")
+      .find()
+      .sort({ _id: -1 }) //-1 to sort the id in descending order and +1 to sort the id in ascending order;
+      .toArray();
+    res.status(200).json({ comments: documents });
   }
   client.close();
 }
