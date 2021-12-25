@@ -1,9 +1,14 @@
-import { MongoClient } from "mongodb";
+import { connectToDatabase, insertDocument } from "../../../helpers/db-utils";
+
 async function handler(req, res) {
   const eventId = req.query.eventId;
-  const client = await MongoClient.connect(
-    "mongodb+srv://DbUser:dbpassword@cluster-nextjs.yaea0.mongodb.net/events?retryWrites=true&w=majority"
-  );
+  let client;
+  try {
+    client = await connectToDatabase();
+  } catch (error) {
+    res.status(500).json({ message: "Connecting to the database failed" });
+    return;
+  }
   if (req.method === "POST") {
     const { email, name, text } = req.body;
 

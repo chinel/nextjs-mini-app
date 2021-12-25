@@ -9,5 +9,6 @@ export async function connectToDatabase() {
 
 export async function insertDocument(client, collection, document) {
   const db = client.db(); //here we can pass the database name as a string to this db method, but since we already specified it in the database url above we can leave it
-  await db.collection(collection).insertOne(document);
+  const result = await db.collection(collection).insertOne(document);
+  return result;
 }
