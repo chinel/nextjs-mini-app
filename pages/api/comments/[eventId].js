@@ -38,7 +38,7 @@ async function handler(req, res) {
     const db = client.db();
     const documents = await db
       .collection("comments")
-      .find()
+      .find({ eventId: eventId })
       .sort({ _id: -1 }) //-1 to sort the id in descending order and +1 to sort the id in ascending order;
       .toArray();
     res.status(200).json({ comments: documents });
