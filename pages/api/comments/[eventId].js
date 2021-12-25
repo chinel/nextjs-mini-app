@@ -38,25 +38,28 @@ async function handler(req, res) {
     let result;
     try {
       result = await insertDocument(client, "comments", newComment);
+      console.log(result);
+      newComment._id = result.insertedId;
+      console.log(newComment);
+      res.status(201).json({ message: "Added comment", comment: newComment });
     } catch (error) {
       res.status(500).json({ message: "Inserting comment failed" });
-      return;
     }
-
-    console.log(result);
-    newComment._id = result.insertedId;
-    console.log(newComment);
-    res.status(201).json({ message: "Added comment", comment: newComment });
   }
 
   if (req.method === "GET") {
-    const documents = await getAllDocuments(
-      client,
-      "comments",
-      { _id: -1 },
-      { eventId: eventId }
-    );
-    res.status(200).json({ comments: documents });
+    let documents;
+    try {
+      documents = await getAllDocuments(
+        client,
+        "comments",
+        { _id: -1 },
+        { eventId: eventId }
+      );
+      res.status(200).json({ comments: documents });
+    } catch (error) {
+      res.status(500).json({ message: "Getting comments failed" });
+    }
   }
   client.close();
 }
