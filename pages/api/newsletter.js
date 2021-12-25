@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { connectToDatabase, insertDocument } from "../../helpers/db-utils";
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -19,7 +19,7 @@ async function handler(req, res) {
     }
 
     try {
-      await insertDocument(client, {
+      await insertDocument(client, "newsletter", {
         email: userEmail,
       });
       client.close();
