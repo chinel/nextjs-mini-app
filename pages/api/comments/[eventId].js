@@ -31,10 +31,16 @@ async function handler(req, res) {
       eventId,
     };
 
-    const db = client.db();
-    const result = await db.collection("comments").insertOne(newComment);
+    let result;
+    try {
+      result = await insertDocument(client, "comments", newComment);
+    } catch (error) {
+      res.status(500).json({ message: "Inserting comment failed" });
+      return;
+    }
+
     console.log(result);
-    newComment.id = result.insertedId;
+    newComment._id = result.insertedId;
     console.log(newComment);
     res.status(201).json({ message: "Added comment", comment: newComment });
   }
