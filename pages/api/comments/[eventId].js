@@ -1,4 +1,8 @@
-import { connectToDatabase, insertDocument } from "../../../helpers/db-utils";
+import {
+  connectToDatabase,
+  insertDocument,
+  getAllDocuments,
+} from "../../../helpers/db-utils";
 
 async function handler(req, res) {
   const eventId = req.query.eventId;
@@ -46,6 +50,12 @@ async function handler(req, res) {
   }
 
   if (req.method === "GET") {
+    const documents = await getAllDocuments(
+      client,
+      "comments",
+      { _id: -1 },
+      { eventId: eventId }
+    );
     res.status(200).json({ comments: documents });
   }
   client.close();

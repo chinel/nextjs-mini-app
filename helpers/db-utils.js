@@ -13,11 +13,11 @@ export async function insertDocument(client, collection, document) {
   return result;
 }
 
-export async function getAllDocuments(client, collection, sort, find) {
+export async function getAllDocuments(client, collection, sort, filter) {
   const db = client.db();
   const documents = await db
     .collection(collection)
-    .find({ eventId: eventId })
+    .find(filter)
     .sort(sort) //-1 to sort the id in descending order and +1 to sort the id in ascending order;
     .toArray();
 
