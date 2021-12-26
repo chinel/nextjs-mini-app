@@ -27,7 +27,17 @@ function NewsletterRegistration() {
       },
       body: JSON.stringify({ email: emailInputRef.current.value }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+
+        //for error messages that have a status code, by default won't make it to the catch block
+        //So to make them make it to the catch block, we have to throw new error
+        return response.json().then((data) => {
+          throw new Error(data.message || "Something went wrong");
+        });
+      })
       .then((data) => {
         notificationCxt.showNotification({
           title: "Success",
@@ -38,7 +48,7 @@ function NewsletterRegistration() {
       })
       .catch((err) => {
         notificationCxt.showNotification({
-          title: "Error!",
+          title: "Error!  ",
           message: err.message || "Something went wrong",
           status: "error",
         });
