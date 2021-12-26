@@ -11,7 +11,7 @@ function Comments(props) {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
 
-  const notificationCtx = useContext(NotificationContext);
+  const notificationCxt = useContext(NotificationContext);
 
   useEffect(() => {
     if (showComments) {
