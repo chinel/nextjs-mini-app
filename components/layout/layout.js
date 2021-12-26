@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import Notification from "../ui/notification";
 import MainHeader from "./main-header";
 
 function Layout(props) {
@@ -6,6 +7,7 @@ function Layout(props) {
     <Fragment>
       <MainHeader />
       <main>{props.children}</main>
+      <Notification />
     </Fragment>
   );
 }
