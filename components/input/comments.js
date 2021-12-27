@@ -8,18 +8,20 @@ import NotificationContext from "../../store/notification-context";
 function Comments(props) {
   const { eventId } = props;
 
+  const notificationCxt = useContext(NotificationContext);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
-
-  const notificationCxt = useContext(NotificationContext);
+  const [isFetchingComments, setIsFetchingComments] = useState(false);
 
   useEffect(() => {
     if (showComments) {
+      setIsFetchingComments(true);
       fetch(`/api/comments/${eventId}`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
           setComments(data.comments);
+          setIsFetchingComments(false);
         });
     }
   }, [showComments]);
@@ -76,7 +78,7 @@ function Comments(props) {
         {showComments ? "Hide" : "Show"} Comments
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList items={comments} />}
+      {showComments && !isFetchingComments && <CommentList items={comments} />}
     </section>
   );
 }
