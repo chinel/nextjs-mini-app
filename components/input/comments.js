@@ -79,6 +79,7 @@ function Comments(props) {
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
       {showComments && !isFetchingComments && <CommentList items={comments} />}
+      {showComments && isFetchingComments && <p>Loading...</p>}
     </section>
   );
 }
